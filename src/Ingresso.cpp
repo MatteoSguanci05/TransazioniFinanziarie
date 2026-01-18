@@ -1,5 +1,4 @@
 #include "Ingresso.h"
-#include <iomanip>
 
 Ingresso::Ingresso(double i, const std::string& d)
     : Transazione(TipoTransazione::ENTRATA, i, d) {}

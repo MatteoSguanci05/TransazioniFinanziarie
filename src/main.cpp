@@ -20,7 +20,7 @@ int main() {
         g2.stampa();
 
         // Modifico elemento id=1 (se esiste) e salvo di nuovo
-        g2.modifica(1, TipoTransazione::ENTRATA, 2100.0, "Stipendio_Ottobre");
+        g2.modifica(1, TipoTransazione::ENTRATA, 2300.0, "Stipendio_Ottobre");
         g2.salvaTutte("movimenti.txt");
 
     } catch (const std::exception& e) {

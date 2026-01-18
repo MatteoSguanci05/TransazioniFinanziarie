@@ -34,8 +34,6 @@ public:
     void setImporto(double i);
     void setDescrizione(const std::string& d);
 
-    // Salvataggio su file
-    void salva(const std::string& nomeFile) const;
 
     // scrittura delle transizioni
     virtual void scriviTransizione(std::ostream& os) const = 0;
