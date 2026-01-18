@@ -1,21 +1,23 @@
 #include "../include/GestoreTransazioni.h"
-#include <gtest/gtest.h>
-#include <filesystem>
+#include <gtest/gtest.h> // libreria per i test
+#include <filesystem> // liberia per lavorare con i file
 
 const std::string fileName = "test_movimenti.txt";
 
-// === TEST 1: Creazione transazioni ===
+//TEST 1: creazione transizioni
 TEST(TransazioneTest, Creazione) {
     Ingresso t1(1000.0, "Stipendio");
     Uscita t2(50.0, "Spesa");
 
-    EXPECT_EQ(t1.getTipo(), TipoTransazione::ENTRATA);
-    EXPECT_EQ(t2.getTipo(), TipoTransazione::USCITA);
-    EXPECT_DOUBLE_EQ(t1.getImporto(), 1000.0);
-    EXPECT_EQ(t2.getDescrizione(), "Spesa");
+    EXPECT_EQ(t1.getTipo(), TipoTransazione::ENTRATA)<<"ERRORE: tipo non corretto";
+    EXPECT_EQ(t2.getTipo(), TipoTransazione::USCITA)<<"ERRORE: tipo non  corretto";
+    EXPECT_DOUBLE_EQ(t1.getImporto(), 1000.0)<<"ERRORE: l'importo non è corretto";
+    EXPECT_DOUBLE_EQ(t2.getImporto(), 50.0)<<"ERRORE: l'importo non è corretto";
+    EXPECT_EQ(t1.getDescrizione(),"Stipendio")<<"ERRORE: la descrizione non è corretta";
+    EXPECT_EQ(t2.getDescrizione(), "Spesa")<<"ERRORE: la descrizione non è corretta";
 }
 
-// === TEST 2: Aggiunta transazioni in gestore ===
+//TEST 2: aggiunta transazioni
 TEST(GestoreTransazioniTest, Aggiungi) {
     GestoreTransazioni g;
     g.aggiungi(new Ingresso(1200.0, "Stipendio_Mese"));
@@ -24,7 +26,7 @@ TEST(GestoreTransazioniTest, Aggiungi) {
     EXPECT_FALSE(g.vuoto());
 }
 
-// === TEST 3: Salvataggio e caricamento da file ===
+//TEST 3: salvataggio e caricamento fyle
 TEST(GestoreTransazioniTest, SalvaECarica) {
     // Pulizia iniziale
     if (std::filesystem::exists(fileName)) {
@@ -47,7 +49,7 @@ TEST(GestoreTransazioniTest, SalvaECarica) {
     }
 }
 
-// === TEST 4: Modifica di una transazione ===
+// TEST 4: modifica di una transazione
 TEST(GestoreTransazioniTest, Modifica) {
     if (std::filesystem::exists(fileName)) {
         std::filesystem::remove(fileName);
@@ -74,7 +76,7 @@ TEST(GestoreTransazioniTest, Modifica) {
     }
 }
 
-// === TEST 5: Rimozione transazione ===
+//TEST 5: rimozione transazione
 TEST(GestoreTransazioniTest, Rimozione) {
     GestoreTransazioni g;
     g.aggiungi(new Ingresso(1000.0, "Stipendio"));
